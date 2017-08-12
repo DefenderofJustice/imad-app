@@ -1,2 +1,2 @@
 console.log('Loaded!');
-text("hello");
+confirm("hello");
