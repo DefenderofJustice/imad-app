@@ -4,8 +4,8 @@ var path = require('path');
 
 var app = express();
 app.use(morgan('combined'));
-
-var articleone={
+var articles={
+ 'article-one':{
   title:"article-one|black knights",
   heading:"article one of the order of black knights",
   law:"C.C law",
@@ -18,6 +18,39 @@ var articleone={
          <p>
              In case C.C. is found unexpectedly staring at you. You must know that she infact doesn't care about it. She is a witch whose sole purpose is to eat pizza. If C.C. hears me she might give me geass. Ugh, the deathly power. I must stay clear of even touching c.c. Though I sometimes wonder hwat kind of shock wave images I might receive. Ugh Ugh. Lulu only you can save us ;~;
          </p> `
+},
+ 'article-two':{
+     title:"article-two|black knights",
+  heading:"article two of the order of black knights",
+  law:"lulu law",
+  content: ` <p>
+             This is the law which states that you must obey every order of Lelouch because he has the power of king, the absolute power which makes anyone do as he commands. Look into his eyes and be blessed. Lelouch vi Britannia commands you to follow his every order.
+         </p>
+         <p>
+             Lelouch has two wishes. One to create a peaceful world for his little sister nunnally and second to avenge the death of his mother lady marianne. Even though she is still alive (spoiler) Anyway, to do so he acquires the power of geass from a mysterious girl C.C. He uses this power to fight against the kingdom of britannia with the help of black knights.
+         </p>
+         <p>
+             While he is a britannian he lives everyday loathing his country and his father who sent him and his little sister nunally as bargain chip to japan. He knew he'd die there. Anyway miraculously he survives and finds a friend suzaku who is actually the devicer of the white helmet that's current;y causing his group of black knights. But fear not Lelouch has Kallen! Lelouch ultimately gets his dream fulfilled and now spends his life with C.C. while driving a cart. LOLOLOL
+         </p>
+  `
+     
+},
+'article-three':{
+    title:"article-three|black knights",
+  heading:"article three of the order of black knights",
+  law:"Suzaku law",
+  content:`<p>
+             This is the law which states that I am too sleepy to write about suzaku. I'll write about you tomorrow. Love from Euphy~. lolololol
+         </p>
+         <p>
+             In case C.C. is found wandering around she must be lured in by pizza. If by chance suzaku shows up he must get a series of shock images by c.c. immediately. It will confuse him for a while but you'll be able to escape. Oh and there is no danger to c.c as she cannot die! but doesn't mean you can cut her up like mao wanted to. That damn sadist.
+         </p>
+         <p>
+             In case C.C. is found unexpectedly staring at you. You must know that she infact doesn't care about it. She is a witch whose sole purpose is to eat pizza. If C.C. hears me she might give me geass. Ugh, the deathly power. I must stay clear of even touching c.c. Though I sometimes wonder hwat kind of shock wave images I might receive. Ugh Ugh. Lulu only you can save us ;~;
+         </p>`
+
+}
+
 };
 
 function createTemplate(data){
@@ -58,15 +91,11 @@ var htmlTemplate=`
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
-app.get('/article-one', function(req,res){
-  res.send(createTemplate(articleone));
+app.get('/:articleName', function(req,res){
+    var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
-app.get('/article-two', function(req,res){
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-app.get('/article-three', function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
+
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
