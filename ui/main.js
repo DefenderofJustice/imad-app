@@ -14,12 +14,27 @@ function moveRight(){
 img.onclick=function(){
     var interval=setInterval(moveRight,50);
 };*/
-var counter=0;
 var button=document.getElementById('counter');
 button.onclick=function(){
-
-//render the variable in the current span
-counter=counter+1;
-var span=document.getElementById('count');
+//create a request object
+var request= new XMLHttpRequest();
+//create a request
+//capture the request and store it to some variable
+request.onreadystatechange=function(){
+    if(request.readyState===XMLHttpRequest.DONE){
+        //take some action
+        if(request.status===200){
+            var counter=request.responseText;
+            var span=document.getElementById('count');
 span.innerHTML=counter.toString();
+        }
+        
+        
+    }
+    //not done yet
+    };
+    //make the request
+    request.open('GET','http://vaishaliagarwal2010.imad.hasura-app.io/counter',true);
+    request.send(null);
+
 };
