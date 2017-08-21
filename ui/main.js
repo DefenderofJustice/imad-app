@@ -2,7 +2,7 @@ console.log('Loaded!');
 confirm("hello");
 prompt("wanna join black knights?");
 
-var element= document.getElementById('main-text');
+/*var element= document.getElementById('main-text');
 element.innerHTML= "New value";
 
 var img=document.getElementById('madi');
@@ -13,4 +13,13 @@ function moveRight(){
 }
 img.onclick=function(){
     var interval=setInterval(moveRight,50);
+};*/
+var counter=0;
+var button=document.getElementById('counter');
+button.onclick=function(){
+
+//render the variable in the current span
+counter=counter+1;
+var span=document.getElementById('count');
+span.innerHTML=counter.toString();
 };
