@@ -45,11 +45,19 @@ var name=nameInput.value;
 var submit=document.getElementById('submit_btn');
 submit.onclick=function()
 {
-    //make a request to the server and send the name
     
-    //capture a list of names and render it as a list
+    //create a request object
+var request= new XMLHttpRequest();
+//create a request
+//capture the request and store it to some variable
+request.onreadystatechange=function(){
+    if(request.readyState===XMLHttpRequest.DONE){
+        //take some action
+        if(request.status===200){
+           //capture a list of names and render it as a list
     
-    var names=['name1','name2','name3','name4'];
+    var names=request.responseText;
+    names=JSON.parse(names);
     var list='';
     for(var i=0; i< names.length ;i++)
     {
@@ -58,5 +66,17 @@ submit.onclick=function()
     }
     var ul=document.getElementById('namelist');
     ul.innerHTMl=list;
+        }
+        
+        
+    }
+    //not done yet
+    };
+    //make the request
+    request.open('GET','http://vaishaliagarwal2010.imad.hasura-app.io/submit-name?name='+name,true);
+    request.send(null);
+    //make a request to the server and send the name
+    
+    
 };
 
