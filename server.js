@@ -12,7 +12,7 @@ var config={
 };
 var app = express();
 app.use(morgan('combined'));
-var articles={
+/*var articles={
  'article-one':{
   title:"article-one|black knights",
   heading:"article one of the order of black knights",
@@ -59,7 +59,7 @@ var articles={
 
 }
 
-};
+};*/
 
 function createTemplate(data){
     var title=data.title;
